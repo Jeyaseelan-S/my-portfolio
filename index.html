@@ -1,0 +1,2218 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="S JEYASEELAN — Computer Science Engineering Student, Creative Developer, and AI/ML Enthusiast based in Tirunelveli, Tamil Nadu, India. Explore an Apple-style cinematic portfolio.">
+    <meta name="keywords"
+        content="S Jeyaseelan, Jeyaseelan, Creative Developer, Computer Science Engineer, Portfolio, EcoBridge, CRUX, Tirunelveli, Tamil Nadu, 3D Web, AI, ML">
+    <meta name="author" content="S Jeyaseelan">
+    <meta property="og:title" content="S JEYASEELAN — Cinematic Developer Portfolio">
+    <meta property="og:description"
+        content="Apple-style interactive product experience and creative engineering portfolio of S Jeyaseelan.">
+    <meta property="og:type" content="website">
+
+    <title>S JEYASEELAN — Computer Science Engineer · Creative Developer</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         SVG DISPLACEMENT & WAVE FILTERS
+    ===================================================== -->
+    <svg class="svg-filters" aria-hidden="true" style="position: absolute; width: 0; height: 0; pointer-events: none;">
+        <defs>
+            <filter id="liquidWave" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.02 0.05" numOctaves="3" result="noise" seed="5" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G"
+                    id="displacementMap" />
+            </filter>
+            <filter id="textGlitch">
+                <feTurbulence type="turbulence" baseFrequency="0.08 0.9" numOctaves="2" result="turb" />
+                <feDisplacementMap in2="turb" in="SourceGraphic" scale="0" xChannelSelector="R" yChannelSelector="B"
+                    id="textDisplacement" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- =====================================================
+         SIMPLE, LUXURIOUS CUSTOM CURSOR (Small Dot + Thin Ring)
+    ===================================================== -->
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+    <!-- Theme Ripple -->
+    <div class="theme-ripple" id="themeRipple" aria-hidden="true"></div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- =====================================================
+     1. CLEAN 1-100% PORTFOLIO LOADING SCREEN
+===================================================== -->
+    <div id="intro" class="intro-overlay" role="dialog" aria-modal="true" aria-label="Portfolio Loading">
+        <div class="intro-grid-ambient"></div>
+
+        <!-- Portfolio Loading Screen -->
+        <div class="portfolio-loader" id="portfolioLoader">
+            <div class="loader-content">
+
+                <div class="loader-progress-wrap">
+                    <div class="loader-counter">
+                        <span class="loader-percent" id="loaderPercent">1%</span>
+                    </div>
+                    <div class="loader-bar-track">
+                        <div class="loader-bar-fill" id="loaderBarFill"></div>
+                    </div>
+                </div>
+
+                <p class="loader-status" id="loaderStatus">Initializing portfolio...</p>
+            </div>
+        </div>
+
+        <!-- Cinematic Wave Curtain -->
+        <div class="cinematic-transition-curtain" id="transitionCurtain">
+            <div class="cinematic-light-beam"></div>
+            <div class="cinematic-curtain-center">
+                <div class="curtain-main-title">S JEYASEELAN</div>
+                <div class="curtain-tamil-title">எஸ் ஜெயசீலன்</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         BACKGROUND 3D CANVAS & NOISE GRAIN
+    ===================================================== -->
+    <div class="canvas-3d-bg" aria-hidden="true">
+        <canvas id="bgCanvas"></canvas>
+        <div class="bg-fine-grid"></div>
+        <div class="bg-noise-overlay"></div>
+        <div class="bg-mouse-radial" id="mouseRadial"></div>
+    </div>
+
+    <!-- =====================================================
+         NAVIGATION
+         Items: HOME, ABOUT, ACHIEVEMENTS, VIRTUAL RESUME, CONNECT
+    ===================================================== -->
+    <header class="site-header" id="siteHeader">
+        <div class="nav-wrapper">
+
+            <!-- Monogram Logo -->
+            <a href="#home" class="nav-brand-logo magnetic" aria-label="S Jeyaseelan Home">
+                <span class="brand-monogram">SJ</span>
+                <span class="brand-period">.</span>
+                <span class="brand-geo">TIRUNELVELI</span>
+            </a>
+
+            <!-- Desktop Nav Items -->
+            <nav class="nav-floating-pill" aria-label="Main Navigation">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link magnetic active" data-nav="home"><span>01</span> HOME</a></li>
+                    <li><a href="#about" class="nav-link magnetic" data-nav="about"><span>02</span> ABOUT</a></li>
+                    <li><a href="#achievements" class="nav-link magnetic" data-nav="achievements"><span>03</span>
+                            ACHIEVEMENTS</a></li>
+                    <li><a href="#resume" class="nav-link magnetic" data-nav="resume"><span>04</span> VIRTUAL RESUME</a>
+                    </li>
+                    <li><a href="#contactSection" class="nav-link magnetic connect-nav-btn"
+                            data-nav="contact"><span>05</span> CONNECT &UpperRightArrow;</a></li>
+                </ul>
+            </nav>  
+
+            <!-- Nav Controls -->
+            <div class="nav-controls">
+
+                <!-- Quick Language Transform Button -->
+                <button class="lang-toggle-pill magnetic" id="langTogglePill" title="Toggle English / தமிழ்"
+                    aria-label="Toggle Tamil and English name">
+                    <span class="badge-en active" id="badgeEn">EN</span>
+                    <span class="badge-sep">/</span>
+                    <span class="badge-ta" id="badgeTa">தமிழ்</span>
+                </button>
+
+                <!-- Theme Switcher -->
+                <button class="theme-toggle-btn magnetic" id="themeToggleBtn" aria-label="Toggle light and dark mode">
+                    <div class="theme-sun-moon-box">
+                        <div class="sun-glyph"></div>
+                        <div class="moon-glyph"></div>
+                    </div>
+                </button>
+
+                <!-- Mobile Hamburger -->
+                <button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle menu" aria-expanded="false">
+                    <span class="h-line h-1"></span>
+                    <span class="h-line h-2"></span>
+                    <span class="h-line h-3"></span>
+                </button>
+
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Mobile Fullscreen Navigation -->
+    <div class="mobile-overlay-menu" id="mobileOverlayMenu" aria-hidden="true">
+        <div class="mobile-menu-inner">
+            <div class="mobile-menu-brand">
+                <span class="m-name">S JEYASEELAN</span>
+                <span class="m-tag">Computer Science Engineering &bull; Tirunelveli</span>
+            </div>
+            <ul class="mobile-menu-list">
+                <li><a href="#home" class="mobile-link active" data-nav="home"><span>01</span> HOME <em class="m-ta">முகப்பு</em></a></li>
+                <li><a href="#about" class="mobile-link" data-nav="about"><span>02</span> ABOUT <em class="m-ta">சுயவிவரம்</em></a></li>
+                <li><a href="#achievements" class="mobile-link" data-nav="achievements"><span>03</span> ACHIEVEMENTS <em
+                            class="m-ta">சாதனைகள்</em></a></li>
+                <li><a href="#resume" class="mobile-link" data-nav="resume"><span>04</span> VIRTUAL RESUME <em
+                            class="m-ta">படிவம்</em></a></li>
+                <li><a href="#contactSection" class="mobile-link highlight-connect" data-nav="contact"><span>05</span> CONNECT
+                        <em class="m-ta">தொடர்பு &rarr;</em></a></li>
+            </ul>
+            <div class="mobile-menu-footer">
+                <a href="mailto:jeyaseelan26206@gmail.com" class="m-email">jeyaseelan26206@gmail.com</a>
+                <span class="m-tel">+91 9042201784</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+         MAIN CONTENT STORYLINE
+    ===================================================== -->
+    <main id="mainContent">
+
+        <!-- =================================================
+             2. HERO — STICKY CINEMATIC HERO & SINGLE-LINE TYPOGRAPHY
+        ================================================= -->
+        <section class="section hero-sticky-section" id="home" aria-label="Hero Introduction">
+
+            <!-- Background Floating Geo Coordinates -->
+            <div class="hero-geo-strip" aria-hidden="true">
+                <div class="geo-left">
+                    <span class="geo-live-dot"></span>
+                    <span>8.7139° N, 77.7567° E &bull; TIRUNELVELI, TAMIL NADU</span>
+                </div>
+                <div class="geo-right">
+                    <span>CGPA 8.16 &bull; CSE STUDENT &bull; 2026</span>
+                </div>
+            </div>
+
+            <!-- Two-Photo Hero Composition Stage -->
+            <div class="hero-dual-portrait-stage magnetic" id="heroPortraitStage" role="button" tabindex="0"
+                aria-label="Interactive portrait. Click name to toggle English/Tamil identity.">
+
+                <div class="portrait-ambient-backlight" id="portraitBacklight"></div>
+
+                <!-- 3D Tilting Frame -->
+                <div class="portrait-frame-3d" id="portraitFrame3d">
+
+                    <!-- Image 2 Layer (Only Image Displayed) -->
+                    <div class="portrait-layer layer-img-2 active" id="layerImg2">
+                        <img src="assets/image2.png" alt="S Jeyaseelan Portrait" class="hero-photo" id="heroPhoto2">
+                        <div class="photo-scanlines"></div>
+                        <div class="photo-vignette"></div>
+                    </div>
+
+                    <!-- 3D Frame Corners & Tag -->
+                    <div class="frame-corner c-tl"></div>
+                    <div class="frame-corner c-tr"></div>
+                    <div class="frame-corner c-bl"></div>
+                    <div class="frame-corner c-br"></div>
+
+                    <div class="portrait-tag-pill">
+                        <span class="tag-status-dot"></span>
+                        <span class="tag-label" id="portraitTagLabel">PORTRAIT</span>
+                    </div>
+
+                </div>
+
+                <div class="portrait-click-hint">
+                    <span class="hint-blink-dot"></span>
+                </div>
+
+            </div>
+
+            <!-- Hero Typography Content Block -->
+            <div class="hero-editorial-block">
+
+                <div class="hero-subhead-strip">
+                    <span class="subhead-pill">COMPUTER SCIENCE ENGINEERING</span>
+                    <span class="subhead-sep">&bull;</span>
+                    <span class="subhead-pill accent">CREATIVE DEVELOPER</span>
+                </div>
+
+                <!-- HERO HUGE TYPOGRAPHY: Shows ONLY ONE Language at a time on ONE SINGLE LINE -->
+                <div class="hero-giant-name-wrapper magnetic" id="heroNameWrapper" role="button" tabindex="0"
+                    aria-label="Click to toggle between S Jeyaseelan and எஸ் ஜெயசீலன்">
+
+                    <div class="name-halo-glow" id="nameHaloGlow"></div>
+
+                    <h1 class="hero-single-line-name" id="heroSingleLineName">
+                        <!-- English Name (Default at load) -->
+                        <span class="name-display-en active" id="nameEn">
+                            <span class="c-glyph">S</span><span class="c-space">&nbsp;</span><span
+                                class="c-glyph">J</span><span class="c-glyph">E</span><span
+                                class="c-glyph">Y</span><span class="c-glyph">A</span><span
+                                class="c-glyph">S</span><span class="c-glyph">E</span><span
+                                class="c-glyph">E</span><span class="c-glyph">L</span><span
+                                class="c-glyph">A</span><span class="c-glyph">N</span>
+                        </span>
+
+                        <!-- Tamil Name (Transforms after 3s or on click: initial is எஸ்) -->
+                        <span class="name-display-ta" id="nameTa">
+                            <span class="c-glyph">எ</span><span class="c-glyph">ஸ்</span><span
+                                class="c-space">&nbsp;</span><span class="c-glyph">ஜெ</span><span
+                                class="c-glyph">ய</span><span class="c-glyph">சீ</span><span
+                                class="c-glyph">ல</span><span class="c-glyph">ன்</span>
+                        </span>
+                    </h1>
+
+                
+
+                </div>
+
+                <!-- Editorial Statement -->
+                <div class="hero-manifesto-lead">
+                    <p>
+                        Engineering digital experiences where <strong class="text-white-bold">computational
+                            depth</strong>, <strong class="text-white-bold">3D motion</strong>, and <strong
+                            class="text-white-bold">human imagination</strong> unite.
+                    </p>
+                </div>
+
+                <!-- Hero Action Buttons -->
+                <div class="hero-buttons-row">
+                    <a href="#achievements" class="btn-solid-primary magnetic">
+                        <span>EXPLORE WORKS</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M7 17L17 7M17 7H7M17 7V17" />
+                        </svg>
+                    </a>
+
+                    <a href="#resume" class="btn-outline-glass magnetic">
+                        <span>VIRTUAL RESUME</span>
+                    </a>
+
+                    <button type="button" class="btn-ghost-link magnetic open-connect-btn">
+                        <span>CONNECT &UpperRightArrow;</span>
+                    </button>
+                </div>
+
+                <!-- Live Status Bar -->
+                <div class="hero-live-status-bar">
+                    <div class="live-badge">
+                        <span class="pulse-indicator"></span>
+                        <span>AVAILABLE FOR CREATIVE DEV &amp; AI ROLES</span>
+                    </div>
+                    <div class="live-location">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        <span>TIRUNELVELI, TAMIL NADU, INDIA</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Scroll Prompt -->
+            <div class="hero-scroll-indicator">
+                <a href="#about" class="scroll-track-link magnetic" aria-label="Scroll to About Section">
+                    <span class="scroll-tag">SCROLL</span>
+                    <div class="scroll-track-line">
+                        <div class="scroll-pill-motion"></div>
+                    </div>
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             3. ICONIC WORD SEQUENCE TRANSFORMER
+        ================================================= -->
+        <section class="section iconic-word-section" aria-label="Design Philosophy Sequence">
+            <div class="iconic-container" data-reveal="scale-up">
+                <span class="iconic-eyebrow">DIGITAL CREATIVE ESSENCE</span>
+
+                <!-- Cycles through: ICONIC -> ATTRACTIVE -> USEFUL -> CREATIVE -> MEMORABLE -> POWERFUL -->
+                <div class="iconic-word-display" id="iconicWordDisplay">
+                    <span class="word-current" id="iconicWordText">ICONIC</span>
+                </div>
+
+                <p class="iconic-tagline">
+                    Every line of code is designed to leave a permanent mark.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- =================================================
+             4. ABOUT SECTION — "BEYOND CODE" + REAL-TIME COUNT-UP STATS
+        ================================================= -->
+        <section class="section about-editorial-section" id="about" aria-label="About S Jeyaseelan">
+
+            <div class="section-tag-row">
+                <span class="sec-num">02</span>
+                <span class="sec-title">// WHO AM I &bull; MANIFESTO</span>
+            </div>
+
+            <div class="editorial-title-wrap" data-reveal="fade-left">
+                <h2 class="huge-editorial-title">
+                    Beyond<br>
+                    <span class="italic-serif">Code.</span>
+                </h2>
+                <div class="quote-side-bar">
+                    <p class="manifesto-quote">
+                        "I don't just build websites.<br>
+                        I build digital experiences people remember."
+                    </p>
+                </div>
+            </div>
+
+            <div class="about-narrative-grid">
+
+                <!-- Left Bio Column -->
+                <div class="about-bio-column" data-reveal="fade-up">
+                    <p class="bio-lead-text">
+                        I am <strong>S JEYASEELAN</strong>, a Computer Science Engineering student, creative developer,
+                        and AI enthusiast from the historic cultural heart of <strong>Tirunelveli, Tamil Nadu,
+                            India</strong>.
+                    </p>
+                    <p class="bio-body-text">
+                        I bridge the gap between rigorous computer science engineering and cinematic visual art. From
+                        architecting full-stack ecosystems like <em>EcoBridge</em> to training document comprehension
+                        models like <em>CRUX</em>, I focus on every pixel, animation curve, and millisecond of latency.
+                    </p>
+                    <p class="bio-body-text">
+                        My goal is to create web applications that feel like an interactive film — responsive,
+                        memorable, and deeply human.
+                    </p>
+
+                    <!-- Real-Time Count-Up Numbers: 0 -> 8.16, 0 -> 5+, 0 -> 3+ -->
+                    <div class="stats-counter-strip" id="statsCounterStrip">
+                        <div class="stat-card">
+                            <span class="stat-number count-up" data-target="8.16" data-decimals="2">0.00</span>
+                            <span class="stat-label">B.E. CSE CGPA</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number count-up" data-target="5" data-suffix="+">0</span>
+                            <span class="stat-label">HIGH-IMPACT PROJECTS</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number count-up" data-target="3" data-suffix="+">0</span>
+                            <span class="stat-label">YEARS DEV &amp; 3D</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Focus Areas Column -->
+                <div class="about-focus-column" data-reveal="fade-right">
+                    <div class="focus-stack-card">
+                        <h3 class="focus-card-title">DISCIPLINES &amp; SPECIALIZATIONS</h3>
+
+                        <div class="discipline-items">
+                            <div class="disc-row">
+                                <div class="disc-icon">&bull;</div>
+                                <div class="disc-info">
+                                    <h4>Computer Science Engineering</h4>
+                                    <p>Algorithms, Data Structures, DBMS, Operating Systems &amp; System Architecture.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="disc-row">
+                                <div class="disc-icon">&bull;</div>
+                                <div class="disc-info">
+                                    <h4>Creative Web Developer</h4>
+                                    <p>High-performance Vanilla JS, React.js, WebGL Canvas, 60fps animations &amp; SVG
+                                        filters.</p>
+                                </div>
+                            </div>
+                            <div class="disc-row">
+                                <div class="disc-icon">&bull;</div>
+                                <div class="disc-info">
+                                    <h4>AI &amp; Machine Learning Enthusiast</h4>
+                                    <p>NLP document intelligence, generative pipelines, Python AI modeling &amp; LLM
+                                        integration.</p>
+                                </div>
+                            </div>
+                            <div class="disc-row">
+                                <div class="disc-icon">&bull;</div>
+                                <div class="disc-info">
+                                    <h4>3D Designer &amp; Motion Artist</h4>
+                                    <p>Blender 3D concepts, perspective transformations, spatial web layouts &amp;
+                                        camera choreography.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             5. 3D FLOATING TECHNOLOGY WALL (With Authentic Brand Colors)
+        ================================================= -->
+        <section class="section tech-wall-section" id="skills" aria-label="Technologies and Skills 3D Wall">
+
+            <div class="section-tag-row">
+                <span class="sec-num">03</span>
+                <span class="sec-title">// ARSENAL &bull; 3D TECHNOLOGY WALL</span>
+            </div>
+
+            <div class="editorial-title-wrap" data-reveal="fade-up">
+                <h2 class="huge-editorial-title">
+                    Technologies<br>
+                    <span class="italic-serif">&amp; Skills.</span>
+                </h2>
+                <p class="section-desc-lead">
+                    Interactive 3D technology wall with authentic brand identities. Move your mouse to explore depth,
+                    rotation, and spatial physics.
+                </p>
+            </div>
+
+            <div class="tech-wall-3d-stage" id="techWallStage" data-reveal="scale-up">
+                <div class="tech-wall-matrix" id="techWallMatrix">
+
+                    <!-- Python -->
+                    <div class="tech-card-3d" data-tech="Python"
+                        style="--brand-color: #3776AB; --brand-glow: rgba(55, 118, 171, 0.35);">
+                        <div class="tech-card-inner">
+                            <div class="tech-logo-svg">
+                                <svg width="40" height="40" viewBox="0 0 128 128">
+                                    <path fill="#3776AB"
+                                        d="M63.5 12.5c-27.5 0-25.8 11.9-25.8 11.9l.1 12.3h26.2v3.7H27.6s-17.1 1.9-17.1 27.6c0 25.7 15 25.2 15 25.2h8.9v-12.5s-.5-15 14.8-15h25.4s14.1.2 14.1-13.8V26.2s2-13.7-25.2-13.7zm-14.4 7.9c2.6 0 4.7 2.1 4.7 4.7s-2.1 4.7-4.7 4.7c-2.6 0-4.7-2.1-4.7-4.7s2.1-4.7 4.7-4.7z" />
+                                    <path fill="#FFD43B"
+                                        d="M64.5 115.5c27.5 0 25.8-11.9 25.8-11.9l-.1-12.3H64v-3.7h36.4s17.1-1.9 17.1-27.6c0-25.7-15-25.2-15-25.2h-8.9v12.5s.5 15-14.8 15H53.4s-14.1-.2-14.1 13.8v25.6s-2 13.8 25.2 13.8zm14.4-7.9c-2.6 0-4.7-2.1-4.7-4.7s2.1-4.7 4.7-4.7c2.6 0 4.7 2.1 4.7 4.7s-2.1 4.7-4.7 4.7z" />
+                                </svg>
+                            </div>
+                            <span class="tech-name">Python</span>
+                            <span class="tech-sub">AI / Data / Backend</span>
+                        </div>
+                    </div>
+
+                    <!-- Java -->
+                    <div class="tech-card-3d" data-tech="Java"
+                        style="--brand-color: #E76F00; --brand-glow: rgba(231, 111, 0, 0.35);">
+                        <div class="tech-card-inner">
+                            <div class="tech-logo-svg">
+                                <svg width="40" height="40" viewBox="0 0 32 32">
+                                    <path fill="#5382A1"
+                                        d="M12.4 22.3s-2.5.2-3.6.8c0 0 1.2.6 3.1.6 3.3.1 6.8-.7 10.4-2.1-3.6.4-7.3.7-9.9.7z" />
+                                    <path fill="#E76F00"
+                                        d="M18.8 15.6c1.6 1.7-1.1 3.2-1.1 3.2 3.8-2 2-4.4 2-4.4-3.5 1.1-5.7 3.3-3.6 4.9 0 0-4.4-1.9.4-4.8 1.5-1 2.3 1.1 2.3 1.1z" />
+                                    <path fill="#5382A1"
+                                        d="M22.8 24.3c-2.1.8-4.9 1.1-7.8 1.1-3.1 0-5.8-.4-7.4-1-.8-.3-1.3-.7-1.3-1.1 0-.6 1.1-1.2 2.8-1.6-1.5.7-1.4 1.5.4 2 2.4.6 6.3.7 10.2.1 1.9-.3 3.1-.7 3.1-.7z" />
+                                </svg>
+                            </div>
+                            <span class="tech-name">Java</span>
+                            <span class="tech-sub">OOP / Algorithms</span>
+                        </div>
+                    </div>
+
+                    <!-- C -->
+                    <div class="tech-card-3d" data-tech="C"
+                        style="--brand-color: #00599C; --brand-glow: rgba(0, 89, 156, 0.35);">
+                        <div class="tech-card-inner">
+                            <div class="tech-logo-svg">
+                                <svg width="40" height="40" viewBox="0 0 128 128">
+                                    <path fill="#00599C"
+                                        d="M116.5 76.8c-2.4 16.4-12.7 28.5-27.4 32.5-14.8 4-30.8-.2-42.6-11.2C24.7 87.1 19.3 70.8 22.8 54.4c3.5-16.4 14.7-28.8 30-32.3 15.3-3.5 31.4 1.5 42.6 13.3l-14 13.9c-6.8-7.2-16.7-10.2-26.1-8-9.4 2.2-16.3 9.8-18.4 19.8-2.1 10 1.2 20 8.8 26.1 7.6 6.1 17.7 6.4 25.5.9 7.8-5.5 12.1-14.5 11.2-24.1H60.4V48.1h56.1z" />
+                                </svg>
+                            </div>
+                            <span class="tech-name">C Language</span>
+                            <span class="tech-sub">Systems / Memory</span>
+                        </div>
+                    </div>
+
+                    <!-- JavaScript -->
+                    <div class="tech-card-3d" data-tech="JavaScript"
+                        style="--brand-color: #F7DF1E; --brand-glow: rgba(247, 223, 30, 0.35);">
+                        <div class="tech-card-inner">
+                            <div class="tech-logo-svg">
+                                <svg width="40" height="40" viewBox="0 0 128 128">
+                                    <path fill="#F7DF1E" d="M1.4 1.4h125.2v125.2H1.4z" />
+                                    <path
+                                        d="M67.3 100c0 9.2-5.4 14.4-14.2 14.4-8 0-12.8-4.4-15.1-9.1l8.5-5.2c1.4 2.6 3.1 4.5 6.4 4.5 3.3 0 5.4-1.3 5.4-6.3V57.1h9V100zm33.4 13.8c-12 0-19.8-5.7-22.3-13.8l8.6-5c1.8 4.7 5.7 8.3 13.3 8.3 6.3 0 10.3-3.1 10.3-7.5 0-5.2-4.1-7-11.4-10.2l-3.9-1.7c-11.2-4.8-16.3-10.8-16.3-21.6 0-12.8 9.8-22.3 24.8-22.3 10.4 0 17.9 3.8 21.6 11.6l-8.3 5.3c-2.1-4.2-5.4-6.7-13.3-6.7-5.7 0-9.4 3.6-9.4 7.8 0 4.8 3.3 6.7 9.8 9.5l3.9 1.7c13.2 5.7 18.2 11.5 18.2 22.8 0 14.5-11.2 22.1-25.7 22.1z" />
+                                </svg>
+                            </div>
+                            <span class="tech-name">JavaScript (ES6+)</span>
+                            <span class="tech-sub">Async / Vanilla / Canvas</span>
+                        </div>
+                    </div>
+
+                    <!-- HTML5 -->
+                    <div class="tech-card-3d" data-tech="HTML5"
+                        style="--brand-color: #E34F26; --brand-glow: rgba(227, 79, 38, 0.35);">
+                        <div class="tech-card-inner">
+                            <div class="tech-logo-svg">
+                                <svg width="40" height="40" viewBox="0 0 128 128">
+                                    <path fill="#E34F26" d="M19.1 11.5l9 101.1 35.8 9.9 35.9-10 9.1-101H19.1z" />
+                                    <path fill="#EF652A" d="M64 113.2l28.8-8 7.5-84.4H64v92.4z" />
+                                    <path fill="#EBEBEB"
+                                        d="M64 47.9H47.1l-1.2-13.2H64V21.5H32.6l3.5 39.6H64V47.9zm0 33.6l-.1.1-16.2-4.4-1-11.6H33.4l2 23 28.5 7.9.1-15zm0-47.9v13.2h16.9l-1.6 17.8H64v13.2h28.7l.2-2.3 3.1-34.6.7-7.3H64z" />
+                                    <path fill="#fff"
+                                        d="M64 81.6l16.3-4.4 1.7-18.7H68.8l-.4-4.5h27.1l-.2 2.3-3.1 34.6-28.2 7.8V81.6z" />
+                                </svg>
+                            </div>
+                            <span class="tech-name">HTML5</span>
+                            <span class="tech-sub">Semantic / Standards</span>
+                        </div>
+                    </div>
+
+                    <!-- CSS3 -->
+                    <div class="tech-card-3d" data-tech="CSS3"
+                        style="--brand-color: #1572B6; --brand-glow: rgba(21, 114, 182, 0.35);">
+                        <div class="tech-card-inner">
+                            <div class="tech-logo-svg">
+                                <svg width="40" height="40" viewBox="0 0 128 128">
+                                    <path fill="#1572B6" d="M19.1 11.5l9 101.1 35.8 9.9 35.9-10 9.1-101H19.1z" />
+                                    <path fill="#33A9DC" d="M64 113.2l28.8-8 7.5-84.4H64v92.4z" />
+                                    <path fill="#EBEBEB"
+                                        d="M64 47.9H47.1l-1.2-13.2H64V21.5H32.6l3.5 39.6H64V47.9zm0 33.6l-.1.1-16.2-4.4-1-11.6H33.4l2 23 28.5 7.9.1-15z" />
+                                    <path fill="#fff"
+                                        d="M64 47.9h16.9l-1.6 17.8H64v13.2h28.7l.2-2.3 3.1-34.6.7-7.3H64V47.9zm0 33.7l16.3-4.4 1.7-18.7H68.8l-.4-4.5h27.1l-.2 2.3-3.1 34.6-28.2 7.8V81.6z" />
+                                </svg>
+                            </div>
+                            <span class="tech-name">CSS3</span>
+                            <span class="tech-sub">3D Transforms / Grid</span>
+                        </div>
+                    </div>
+
+                    <!-- React -->
+                    <div class="tech-card-3d" data-tech="React"
+                        style="--brand-color: #61DAFB; --brand-glow: rgba(97, 218, 251, 0.35);">
+                        <div class="tech-card-inner">
+                            <div class="tech-logo-svg">
+                                <svg width="40" height="40" viewBox="0 0 128 128">
+                                    <ellipse cx="64" cy="64" rx="14.5" ry="38.5" fill="none" stroke="#61DAFB"
+                                        stroke-width="5" transform="rotate(30 64 64)" />
+                                    <ellipse cx="64" cy="64" rx="14.5" ry="38.5" fill="none" stroke="#61DAFB"
+                                        stroke-width="5" transform="rotate(90 64 64)" />
+                                    <ellipse cx="64" cy="64" rx="14.5" ry="38.5" fill="none" stroke="#61DAFB"
+                                        stroke-width="5" transform="rotate(150 64 64)" />
+                                    <circle cx="64" cy="64" r="9" fill="#61DAFB" />
+                                </svg>
+                            </div>
+                            <span class="tech-name">React.js</span>
+                            <span class="tech-sub">Components / State</span>
+                        </div>
+                    </div>
+
+                    <!-- PHP -->
+                    <div class="tech-card-3d" data-tech="PHP"
+                        style="--brand-color: #777BB4; --brand-glow: rgba(119, 123, 180, 0.35);">
+                        <div class="tech-card-inner">
+                            <div class="tech-logo-svg">
+                                <svg width="40" height="40" viewBox="0 0 128 128">
+                                    <ellipse cx="64" cy="64" rx="58" ry="34" fill="#777BB4" />
+                                    <path
+                                        d="M47.7 64.7c-.5 2.8-2.6 4.7-5.5 4.7h-4.3l2.3-12.7h4.8c2.9 0 4.6 1.7 4.1 4.5l-1.4 3.5zm7.7-4.1c1.2-6.5-2.7-11.8-10.7-11.8H30.4L20 90.7h9.8l3-16.7h4.7c7.9 0 13.9-4.8 15.5-13.4l2.4-7zM77 64.7c-.5 2.8-2.6 4.7-5.5 4.7h-4.3l2.3-12.7h4.8c2.9 0 4.6 1.7 4.1 4.5l-1.4 3.5zm7.7-4.1c1.2-6.5-2.7-11.8-10.7-11.8H59.7L49.3 90.7h9.8l3-16.7h4.7c7.9 0 13.9-4.8 15.5-13.4l2.4-7zM107 48.8h-9.8l-7.5 41.9h9.8l3.1-17.1h10.4c8 0 13.9-5.1 15.5-13.8 1.2-6.7-2.6-11-10.6-11h-10.9zm.6 15.9c-.5 2.8-2.6 4.7-5.5 4.7h-4.3l2.3-12.7h4.8c2.9 0 4.6 1.7 4.1 4.5l-1.4 3.5z"
+                                        fill="#fff" />
+                                </svg>
+                            </div>
+                            <span class="tech-name">PHP</span>
+                            <span class="tech-sub">Backend / Server APIs</span>
+                        </div>
+                    </div>
+
+                    <!-- Node.js -->
+                    <div class="tech-card-3d" data-tech="Node.js"
+                        style="--brand-color: #339933; --brand-glow: rgba(51, 153, 51, 0.35);">
+                        <div class="tech-card-inner">
+                            <div class="tech-logo-svg">
+                                <svg width="40" height="40" viewBox="0 0 128 128">
+                                    <path fill="#339933"
+                                        d="M64 8.5L14.6 37v57L64 122.5l49.4-28.5V37L64 8.5zm0 10.3l40.4 23.3v46.7L64 112.2 23.6 88.8V42.1L64 18.8z" />
+                                </svg>
+                            </div>
+                            <span class="tech-name">Node.js</span>
+                            <span class="tech-sub">Runtime / Services</span>
+                        </div>
+                    </div>
+
+                    <!-- MongoDB -->
+                    <div class="tech-card-3d" data-tech="MongoDB"
+                        style="--brand-color: #47A248; --brand-glow: rgba(71, 162, 72, 0.35);">
+                        <div class="tech-card-inner">
+                            <div class="tech-logo-svg">
+                                <svg width="40" height="40" viewBox="0 0 128 128">
+                                    <path fill="#47A248"
+                                        d="M64.6 12.8c-2.3 2.6-19.6 23.8-19.6 49.3 0 25.5 17.5 46.2 19.6 53.1 2.1-6.9 19.6-27.6 19.6-53.1 0-25.5-17.3-46.7-19.6-49.3z" />
+                                    <path fill="#fff"
+                                        d="M64 30.5v72.3c-.6-1.5-14.8-17.6-14.8-40.4 0-20.9 12.8-30.5 14.8-31.9z" />
+                                </svg>
+                            </div>
+                            <span class="tech-name">MongoDB</span>
+                            <span class="tech-sub">NoSQL Database</span>
+                        </div>
+                    </div>
+
+                    <!-- AI / ML -->
+                    <div class="tech-card-3d" data-tech="AI/ML"
+                        style="--brand-color: #8B5CF6; --brand-glow: rgba(139, 92, 246, 0.35);">
+                        <div class="tech-card-inner">
+                            <div class="tech-logo-svg">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="3" />
+                                    <path
+                                        d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                                </svg>
+                            </div>
+                            <span class="tech-name">AI / ML</span>
+                            <span class="tech-sub">NLP / Models / CRUX</span>
+                        </div>
+                    </div>
+
+                    <!-- Blender 3D -->
+                    <div class="tech-card-3d" data-tech="Blender"
+                        style="--brand-color: #F5792A; --brand-glow: rgba(245, 121, 42, 0.35);">
+                        <div class="tech-card-inner">
+                            <div class="tech-logo-svg">
+                                <svg width="40" height="40" viewBox="0 0 128 128">
+                                    <path fill="#F5792A"
+                                        d="M57.6 37.6c-5.8 4.2-13.6 3.6-18.7-1.5L25.8 49.2c1.9 3.5 2.8 7.4 2.8 11.5 0 13.9-11.3 25.2-25.2 25.2-1.2 0-2.4-.1-3.6-.3L.8 98.7c22.3 8.3 47.7-1.6 58-23.7 3.5-7.6 4.3-15.9 2.5-23.7-1.2-4.9-3.7-9.3-3.7-13.7zm28.8-19.2L73.3 31.5c4.7 3.6 7.8 9.1 8.4 15.3l15.9-3.3c-1.3-9.9-6.3-18.6-14-24.3l2.8-.8z" />
+                                    <circle cx="64" cy="64" r="14" fill="#225B8D" />
+                                    <circle cx="64" cy="64" r="8" fill="#FFFFFF" />
+                                </svg>
+                            </div>
+                            <span class="tech-name">Blender / 3D</span>
+                            <span class="tech-sub">Spatial Web / Assets</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             6. EDUCATION — INTERACTIVE DISCOVERY TIMELINE
+        ================================================= -->
+        <section class="section education-section" aria-label="Education History">
+
+            <div class="section-tag-row">
+                <span class="sec-num">04</span>
+                <span class="sec-title">// ACADEMIC PEDIGREE &bull; DISCOVERY TIMELINE</span>
+            </div>
+
+            <div class="editorial-title-wrap" data-reveal="fade-up">
+                <h2 class="huge-editorial-title">
+                    Education<br>
+                    <span class="italic-serif">&amp; Journey.</span>
+                </h2>
+                <p class="section-desc-lead">
+                    Touch or hover over each milestone to reveal hidden academic details, scores, and focus areas.
+                </p>
+            </div>
+
+            <div class="education-interactive-grid">
+
+                <!-- 10th -->
+                <div class="edu-discovery-card magnetic" data-reveal="slide-left" tabindex="0">
+                    <div class="edu-card-top">
+                        <span class="edu-year-badge">SECONDARY SCHOOL</span>
+                        <span class="edu-score-badge">PASS &bull; 10TH</span>
+                    </div>
+                    <h3 class="edu-institution-title">Secondary School Certificate (SSLC)</h3>
+                    <p class="edu-location">Tirunelveli, Tamil Nadu, India</p>
+
+                    <div class="edu-reveal-details">
+                        <hr class="edu-divider">
+                        <p class="edu-desc">
+                            Foundation in Mathematics, Science, and Logical Problem Solving. Sparked early passion for
+                            software, coding, and algorithms.
+                        </p>
+                        <span class="edu-highlight-tag">Strong Foundation</span>
+                    </div>
+                    <div class="edu-card-expand-indicator">+</div>
+                </div>
+
+                <!-- 12th -->
+                <div class="edu-discovery-card magnetic" data-reveal="fade-up" tabindex="0">
+                    <div class="edu-card-top">
+                        <span class="edu-year-badge">HIGHER SECONDARY</span>
+                        <span class="edu-score-badge highlight">86% &bull; 12TH</span>
+                    </div>
+                    <h3 class="edu-institution-title">Higher Secondary Certificate (HSC)</h3>
+                    <p class="edu-location">Tirunelveli, Tamil Nadu, India</p>
+
+                    <div class="edu-reveal-details">
+                        <hr class="edu-divider">
+                        <p class="edu-desc">
+                            Specialized in Computer Science, Advanced Mathematics, Physics, and Chemistry. Built
+                            algorithmic programs in C and Python.
+                        </p>
+                        <span class="edu-highlight-tag">86% Score &bull; Computer Science Stream</span>
+                    </div>
+                    <div class="edu-card-expand-indicator">+</div>
+                </div>
+
+                <!-- College -->
+                <div class="edu-discovery-card featured-edu magnetic" data-reveal="slide-right" tabindex="0">
+                    <div class="edu-card-top">
+                        <span class="edu-year-badge">2023 &ndash; 2027</span>
+                        <span class="edu-score-badge stellar">CGPA: 8.16</span>
+                    </div>
+                    <h3 class="edu-institution-title">Bachelor of Engineering (B.E.) — Computer Science &amp;
+                        Engineering</h3>
+                    <p class="edu-location">Anna University Affiliated Engineering College &bull; Tirunelveli, Tamil
+                        Nadu</p>
+
+                    <div class="edu-reveal-details">
+                        <hr class="edu-divider">
+                        <p class="edu-desc">
+                            Core Coursework: Data Structures &amp; Algorithms, Operating Systems, Database Management
+                            Systems, AI/ML, Full Stack Web Engineering, and Computer Networks. Lead builder of EcoBridge
+                            and CRUX AI.
+                        </p>
+                        <span class="edu-highlight-tag">Current CGPA: 8.16 &bull; Hackathon Finalist</span>
+                    </div>
+                    <div class="edu-card-expand-indicator">+</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             7. ACHIEVEMENTS — LARGE EDITORIAL ROWS
+        ================================================= -->
+        <section class="section achievements-editorial-section" id="achievements" aria-label="Achievements Showcase">
+
+            <div class="section-tag-row">
+                <span class="sec-num">05</span>
+                <span class="sec-title">// SELECTED WORKS &bull; IMPACT</span>
+            </div>
+
+            <div class="editorial-title-wrap" data-reveal="fade-up">
+                <h2 class="huge-editorial-title">
+                    Things I've<br>
+                    <span class="italic-serif">Built &amp; Won.</span>
+                </h2>
+            </div>
+
+            <div class="achievements-interactive-list">
+
+                <!-- 01 Retail Pro -->
+                <article class="achieve-row magnetic" data-reveal="slide-left">
+                    <div class="achieve-num">01</div>
+                    <div class="achieve-body">
+                        <div class="achieve-head">
+                            <h3 class="achieve-name">Retail Pro</h3>
+                            <span class="achieve-tag">FEATURED LEAD</span>
+                        </div>
+                        <p class="achieve-summary">
+                            A full-stack retail management platform designed to simplify product, inventory, sales, and
+                            customer management.
+                        </p>
+                    </div>
+                    <div class="achieve-meta-col">
+                        <span class="achieve-cat">Full Stack / Database / Web</span>
+                        <span class="achieve-yr">2025–2026</span>
+                    </div>
+                    <div class="achieve-arrow">&UpperRightArrow;</div>
+                </article>
+
+                <!-- 02 CRUX -->
+                <article class="achieve-row magnetic" data-reveal="slide-right">
+                    <div class="achieve-num">02</div>
+                    <div class="achieve-body">
+                        <div class="achieve-head">
+                            <h3 class="achieve-name">CRUX</h3>
+                            <span class="achieve-tag">AI INNOVATION</span>
+                        </div>
+                        <p class="achieve-summary">
+                            AI-powered document summarization and knowledge extraction platform designed to transform
+                            complex documents into concise, useful insights.
+                        </p>
+                    </div>
+                    <div class="achieve-meta-col">
+                        <span class="achieve-cat">AI / NLP / Python / Web</span>
+                        <span class="achieve-yr">2025</span>
+                    </div>
+                    <div class="achieve-arrow">&UpperRightArrow;</div>
+                </article>
+
+                <!-- 03 EcoBridge -->
+                <article class="achieve-row magnetic" data-reveal="slide-left">
+                    <div class="achieve-num">03</div>
+                    <div class="achieve-body">
+                        <div class="achieve-head">
+                            <h3 class="achieve-name">EcoBridge</h3>
+                            <span class="achieve-tag">SUSTAINABILITY</span>
+                        </div>
+                        <p class="achieve-summary">
+                            An SDG-focused platform connecting sustainable ideas, environmental data, green initiatives,
+                            and community-driven action.
+                        </p>
+                    </div>
+                    <div class="achieve-meta-col">
+                        <span class="achieve-cat">React / Node.js / IoT / Sustainability</span>
+                        <span class="achieve-yr">2026</span>
+                    </div>
+                    <div class="achieve-arrow">&UpperRightArrow;</div>
+                </article>
+
+                <!-- 04 Theatre -->
+                <article class="achieve-row magnetic" data-reveal="slide-right">
+                    <div class="achieve-num">04</div>
+                    <div class="achieve-body">
+                        <div class="achieve-head">
+                            <h3 class="achieve-name">Theatre</h3>
+                            <span class="achieve-tag">SOFTWARE ENGINEERING</span>
+                        </div>
+                        <p class="achieve-summary">
+                            A software system for managing theatre seats, reservations, customer details, and booking
+                            operations.
+                        </p>
+                    </div>
+                    <div class="achieve-meta-col">
+                        <span class="achieve-cat">Java / OOP / Database / Software Engineering</span>
+                        <span class="achieve-yr">2025</span>
+                    </div>
+                    <div class="achieve-arrow">&UpperRightArrow;</div>
+                </article>
+
+                <!-- 05 Virtual Resume -->
+                <article class="achieve-row magnetic" data-reveal="slide-left">
+                    <div class="achieve-num">05</div>
+                    <div class="achieve-body">
+                        <div class="achieve-head">
+                            <h3 class="achieve-name">Virtual Resume</h3>
+                            <span class="achieve-tag">PORTFOLIO</span>
+                        </div>
+                        <p class="achieve-summary">
+                            A modern interactive portfolio that presents my education, technical skills, projects,
+                            achievements, experience, and professional profile.
+                        </p>
+                    </div>
+                    <div class="achieve-meta-col">
+                        <span class="achieve-cat">HTML / CSS / JavaScript / Portfolio</span>
+                        <span class="achieve-yr">2026</span>
+                    </div>
+                    <div class="achieve-arrow">&UpperRightArrow;</div>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             8. VIRTUAL RESUME (Interactive Document & 3D Paper Effect Modal)
+        ================================================= -->
+        <section class="section virtual-resume-section" id="resume" aria-label="Virtual Resume">
+
+            <div class="section-tag-row">
+                <span class="sec-num">06</span>
+                <span class="sec-title">// CURRICULUM VITAE &bull; DIGITAL RESUME</span>
+            </div>
+
+            <div class="editorial-title-wrap" data-reveal="fade-up">
+                <h2 class="huge-editorial-title">
+                    Virtual<br>
+                    <span class="italic-serif">Resume.</span>
+                </h2>
+
+                <div class="resume-cta-buttons">
+                    <!-- VIEW RESUME BUTTON (Triggers 3D Paper Unfolding Effect) -->
+                    <button type="button" class="btn-solid-primary magnetic" id="viewResumeBtn">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                        <span>VIEW RESUME (PAPER EFFECT)</span>
+                    </button>
+
+                    <a href="resume.pdf" download="S_Jeyaseelan_Resume.pdf" class="btn-outline-glass magnetic"
+                        id="downloadResumeBtn">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                        </svg>
+                        <span>DOWNLOAD PDF</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Digital Document Layout -->
+            <div class="digital-doc-sheet" data-reveal="scale-up">
+
+                <div class="doc-sheet-header">
+                    <div class="doc-header-titles">
+                        <h3 class="doc-name">S JEYASEELAN</h3>
+                        <p class="doc-tagline">Computer Science Engineering Student &bull; Creative Developer &bull; AI
+                            Enthusiast</p>
+                        <div class="doc-meta-info">
+                            <span>Email: <a href="mailto:jeyaseelan26206@gmail.com">jeyaseelan26206@gmail.com</a></span>
+                            <span>Phone: +91 9042201784</span>
+                            <span>CGPA: 8.16</span>
+                            <span>Native: Tirunelveli, Tamil Nadu</span>
+                        </div>
+                    </div>
+                    <div class="doc-stamp-seal">
+                        <span class="seal-txt">VERIFIED &bull; 2026</span>
+                    </div>
+                </div>
+
+                <div class="doc-tabs-bar" role="tablist">
+                    <button class="doc-tab-btn active" role="tab" aria-selected="true"
+                        data-tab="overview">OVERVIEW</button>
+                    <button class="doc-tab-btn" role="tab" aria-selected="false" data-tab="skills">SKILLS &amp;
+                        STACK</button>
+                    <button class="doc-tab-btn" role="tab" aria-selected="false" data-tab="projects">PROJECTS</button>
+                    <button class="doc-tab-btn" role="tab" aria-selected="false" data-tab="education">EDUCATION</button>
+                </div>
+
+                <div class="doc-tab-content-panels">
+
+                    <div class="doc-panel active" id="tab-overview" role="tabpanel">
+                        <h4 class="panel-section-title">CAREER OBJECTIVE &amp; VISION</h4>
+                        <p class="panel-paragraph">
+                            Passionate and detail-oriented Computer Science Engineering student with deep expertise in
+                            full-stack web development, modern creative motion systems, and AI applications. Committed
+                            to architecting resilient, beautiful, and scalable digital products where engineering
+                            precision and human aesthetic storytelling converge.
+                        </p>
+                        <h4 class="panel-section-title" style="margin-top: 20px;">CORE STRENGTHS</h4>
+                        <ul class="doc-bullet-list">
+                            <li><strong>Full-Stack Architecture:</strong> Proven capability building end-to-end
+                                applications with clean modular code and REST APIs.</li>
+                            <li><strong>Creative Engineering:</strong> Transforming complex requirements into
+                                award-caliber interactive web platforms with 3D motion.</li>
+                            <li><strong>Problem Solving:</strong> Strong grasp of Data Structures, Algorithms, and
+                                performance profiling.</li>
+                        </ul>
+                    </div>
+
+                    <div class="doc-panel" id="tab-skills" role="tabpanel">
+                        <div class="skills-doc-grid">
+                            <div class="skill-group">
+                                <h5>Programming Languages</h5>
+                                <p>Python, Java, C, JavaScript (ES6+), HTML5, CSS3, PHP, SQL</p>
+                            </div>
+                            <div class="skill-group">
+                                <h5>Frameworks &amp; Web</h5>
+                                <p>React.js, Node.js, Express, MongoDB, Canvas API, RESTful Services</p>
+                            </div>
+                            <div class="skill-group">
+                                <h5>AI &amp; 3D Design</h5>
+                                <p>NLP Document Comprehension, Python ML, Blender 3D, Spatial Web</p>
+                            </div>
+                            <div class="skill-group">
+                                <h5>Tools &amp; Workflow</h5>
+                                <p>Git, GitHub, VS Code, Figma, Postman, Linux</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="doc-panel" id="tab-projects" role="tabpanel">
+                        <div class="project-doc-entry">
+                            <h5>1. EcoBridge — Sustainable Knowledge Hub</h5>
+                            <p>Full-stack SDG environmental platform integrating climate metrics, IoT monitoring
+                                visualizations, and community action boards.</p>
+                        </div>
+                        <div class="project-doc-entry">
+                            <h5>2. CRUX — AI-Powered Document Intelligence</h5>
+                            <p>Intelligent document summarization engine parsing dense academic texts into structured
+                                notes and smart query responses.</p>
+                        </div>
+                    </div>
+
+                    <div class="doc-panel" id="tab-education" role="tabpanel">
+                        <div class="edu-doc-entry">
+                            <h5>Bachelor of Engineering (B.E.) — CSE (2023 &ndash; 2027)</h5>
+                            <p>Anna University Affiliated College &bull; Current CGPA: <strong>8.16</strong></p>
+                        </div>
+                        <div class="edu-doc-entry">
+                            <h5>Higher Secondary Certificate (HSC) — 12th</h5>
+                            <p>Tirunelveli &bull; Score: <strong>86%</strong></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             9. CERTIFICATIONS — 4 IN A ROW CAROUSEL WITH 3S AUTO-ROTATE & ARROWS
+             (NOT in top navigation — discovered naturally while scrolling)
+        ================================================= -->
+        <section class="section certifications-archive-section" id="certifications"
+            aria-label="Certifications and Proof of Work">
+
+            <div class="section-tag-row">
+                <span class="sec-num">07</span>
+                <span class="sec-title">// THE ARCHIVE &bull; DISCOVERY VAULT</span>
+            </div>
+
+            <div class="editorial-title-wrap" data-reveal="fade-up">
+                <!-- Morphing Section Phrase: PROOF OF WORK -> CERTIFIED -> RECOGNIZED -> VERIFIED -->
+                <h2 class="huge-editorial-title">
+                    <span id="certMorphHeadline">Proof of</span><br>
+                    <span class="italic-serif" id="certMorphSubline">Work.</span>
+                </h2>
+                <div class="cert-carousel-controls-top">
+                    <p class="section-desc-lead">
+                        20 certificates in rotation (auto-advances every 3s). Use arrows to navigate or tap any document
+                        to inspect.
+                    </p>
+                    <div class="cert-arrow-buttons">
+                        <button class="cert-nav-btn magnetic" id="certPrevBtn"
+                            aria-label="Previous Certificate">&larr;</button>
+                        <button class="cert-nav-btn magnetic" id="certNextBtn"
+                            aria-label="Next Certificate">&rarr;</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 in a Row Slider Container -->
+
+            <div class="cert-carousel-viewport" id="certCarouselViewport" data-reveal="scale-up">
+                <div class="cert-carousel-track" id="certCarouselTrack">
+
+                    <!-- Certificate 1 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="0"
+                        data-cert-src="assets/certificates/certificate1.jpeg"
+                        data-cert-title="Python with Django Framework" data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate1.jpeg"
+                                alt="Python with Django Framework Certificate" class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">01 // PYTHON / WEB DEVELOPMENT</span>
+                            <h4 class="cert-name-label">Python with Django Framework</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 2 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="1"
+                        data-cert-src="assets/certificates/certificate2.jpeg" data-cert-title="HTML" data-cert-issuer=""
+                        data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate2.jpeg" alt="HTML Certificate" class="cert-img"
+                                loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">02 // WEB / FRONTEND</span>
+                            <h4 class="cert-name-label">HTML</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 3 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="2"
+                        data-cert-src="assets/certificates/certificate3.jpeg"
+                        data-cert-title="Python Fundamentals for Beginners" data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate3.jpeg"
+                                alt="Python Fundamentals for Beginners Certificate" class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">03 // PROGRAMMING / PYTHON</span>
+                            <h4 class="cert-name-label">Python Fundamentals for Beginners</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 4 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="3"
+                        data-cert-src="assets/certificates/certificate4.jpeg" data-cert-title="Aptitude Quiz"
+                        data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate4.jpeg" alt="Aptitude Quiz Certificate"
+                                class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">04 // APTITUDE / LOGICAL REASONING</span>
+                            <h4 class="cert-name-label">Aptitude Quiz</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 5 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="4"
+                        data-cert-src="assets/certificates/certificate5.jpeg" data-cert-title="C Programming Quiz"
+                        data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate5.jpeg" alt="C Programming Quiz Certificate"
+                                class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">05 // PROGRAMMING / C LANGUAGE</span>
+                            <h4 class="cert-name-label">C Programming Quiz</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 6 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="5"
+                        data-cert-src="assets/certificates/certificate6.jpeg"
+                        data-cert-title="Introduction to Android Course" data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate6.jpeg"
+                                alt="Introduction to Android Course Certificate" class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">06 // MOBILE / ANDROID DEVELOPMENT</span>
+                            <h4 class="cert-name-label">Introduction to Android Course</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 7 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="6"
+                        data-cert-src="assets/certificates/certificate7.jpeg" data-cert-title="C Programming Basics"
+                        data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate7.jpeg" alt="C Programming Basics Certificate"
+                                class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">07 // PROGRAMMING / FUNDAMENTALS</span>
+                            <h4 class="cert-name-label">C Programming Basics</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 8 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="7"
+                        data-cert-src="assets/certificates/certificate8.jpeg" data-cert-title="Introduction to Java"
+                        data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate8.jpeg" alt="Introduction to Java Certificate"
+                                class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">08 // PROGRAMMING / JAVA</span>
+                            <h4 class="cert-name-label">Introduction to Java</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 9 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="8"
+                        data-cert-src="assets/certificates/certificate9.jpeg"
+                        data-cert-title="Data Structures and Algorithms (DSA)" data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate9.jpeg"
+                                alt="Data Structures and Algorithms Certificate" class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">09 // COMPUTER SCIENCE / DSA</span>
+                            <h4 class="cert-name-label">Data Structures and Algorithms (DSA)</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 10 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="9"
+                        data-cert-src="assets/certificates/certificate10.jpeg"
+                        data-cert-title="Java Programming Online Internship" data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate10.jpeg"
+                                alt="Java Programming Online Internship Certificate" class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">10 // INTERNSHIP / JAVA DEVELOPMENT</span>
+                            <h4 class="cert-name-label">Java Programming Online Internship</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 11 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="10"
+                        data-cert-src="assets/certificates/certificate11.jpeg"
+                        data-cert-title="Prize in C Programming Quiz" data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate11.jpeg" alt="Prize in C Programming Quiz"
+                                class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">11 // AWARDS / RECOGNITION</span>
+                            <h4 class="cert-name-label">Prize in C Programming Quiz</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 12 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="11"
+                        data-cert-src="assets/certificates/certificate12.jpeg" data-cert-title="Data Structures in C"
+                        data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate12.jpeg" alt="Data Structures in C Certificate"
+                                class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">12 // PROGRAMMING / COMPUTER SCIENCE</span>
+                            <h4 class="cert-name-label">Data Structures in C</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 13 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="12"
+                        data-cert-src="assets/certificates/certificate13.jpeg"
+                        data-cert-title="21 Days Coding Challenge — Coding Ninjas" data-cert-issuer=""
+                        data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate13.jpeg" alt="21 Days Coding Challenge Certificate"
+                                class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">13 // CODING / CONSISTENCY</span>
+                            <h4 class="cert-name-label">21 Days Coding Challenge — Coding Ninjas</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 14 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="13"
+                        data-cert-src="assets/certificates/certificate14.jpeg"
+                        data-cert-title="NPTEL — Python for Data Science" data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate14.jpeg"
+                                alt="NPTEL Python for Data Science Certificate" class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">14 // NPTEL / DATA SCIENCE</span>
+                            <h4 class="cert-name-label">NPTEL — Python for Data Science</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 15 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="14"
+                        data-cert-src="assets/certificates/certificate15.jpeg" data-cert-title="GeeksforGeeks Workshop"
+                        data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate15.jpeg" alt="GeeksforGeeks Workshop Certificate"
+                                class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">15 // WORKSHOP / TECHNICAL LEARNING</span>
+                            <h4 class="cert-name-label">GeeksforGeeks Workshop</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 16 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="15"
+                        data-cert-src="assets/certificates/certificate16.jpeg"
+                        data-cert-title="Two-Day Workshop — Exploring Generative AI" data-cert-issuer=""
+                        data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate16.jpeg"
+                                alt="Exploring Generative AI Workshop Certificate" class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">16 // ARTIFICIAL INTELLIGENCE / WORKSHOP</span>
+                            <h4 class="cert-name-label">Two-Day Workshop — Exploring Generative AI</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 17 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="16"
+                        data-cert-src="assets/certificates/certificate17.jpeg"
+                        data-cert-title="NPTEL — Programming in Java" data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate17.jpeg"
+                                alt="NPTEL Programming in Java Certificate" class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">17 // NPTEL / JAVA PROGRAMMING</span>
+                            <h4 class="cert-name-label">NPTEL — Programming in Java</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 18 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="17"
+                        data-cert-src="assets/certificates/certificate18.jpeg" data-cert-title="Generative AI"
+                        data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate18.jpeg" alt="Generative AI Certificate"
+                                class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">18 // ARTIFICIAL INTELLIGENCE / INNOVATION</span>
+                            <h4 class="cert-name-label">Generative AI</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 19 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="18"
+                        data-cert-src="assets/certificates/certificate19.jpeg"
+                        data-cert-title="InnovateX 2025 — Prize Winner" data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate19.jpeg" alt="InnovateX 2025 Prize Certificate"
+                                class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">19 // AWARDS / INNOVATION</span>
+                            <h4 class="cert-name-label">InnovateX 2025 — Prize Winner</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 20 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="19"
+                        data-cert-src="assets/certificates/certificate20.jpeg"
+                        data-cert-title="NPTEL — Internet of Things (IoT)" data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate20.jpeg" alt="NPTEL Internet of Things Certificate"
+                                class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">20 // NPTEL / CONNECTED SYSTEMS</span>
+                            <h4 class="cert-name-label">NPTEL — Internet of Things (IoT)</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                    <!-- Certificate 21 -->
+                    <div class="cert-physical-card magnetic" data-cert-index="20"
+                        data-cert-src="assets/certificates/certificate21.jpeg" data-cert-title="Data Genesis Hackathon"
+                        data-cert-issuer="" data-cert-year="">
+                        <div class="cert-card-shine"></div>
+                        <div class="cert-paper-texture"></div>
+                        <div class="cert-preview-img-wrap">
+                            <img src="assets/certificates/certificate21.jpeg" alt="Data Genesis Hackathon Certificate"
+                                class="cert-img" loading="lazy">
+                        </div>
+                        <div class="cert-card-meta">
+                            <span class="cert-cat-pill">21 // HACKATHON / INNOVATION</span>
+                            <h4 class="cert-name-label">Data Genesis Hackathon</h4>
+                        </div>
+                        <div class="cert-click-badge">VIEW &UpperRightArrow;</div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- Dots Indicator -->
+            <div class="cert-dots-bar" id="certDotsBar">
+                <span class="c-dot active" data-idx="0"></span>
+                <span class="c-dot" data-idx="1"></span>
+                <span class="c-dot" data-idx="2"></span>
+                <span class="c-dot" data-idx="3"></span>
+                <span class="c-dot" data-idx="4"></span>
+                <span class="c-dot" data-idx="5"></span>
+                <span class="c-dot" data-idx="6"></span>
+                <span class="c-dot" data-idx="7"></span>
+                <span class="c-dot" data-idx="8"></span>
+                <span class="c-dot" data-idx="9"></span>
+                <span class="c-dot" data-idx="10"></span>
+                <span class="c-dot" data-idx="11"></span>
+                <span class="c-dot" data-idx="12"></span>
+                <span class="c-dot" data-idx="13"></span>
+                <span class="c-dot" data-idx="14"></span>
+                <span class="c-dot" data-idx="15"></span>
+                <span class="c-dot" data-idx="16"></span>
+                <span class="c-dot" data-idx="17"></span>
+                <span class="c-dot" data-idx="18"></span>
+                <span class="c-dot" data-idx="19"></span>
+            </div>
+
+
+
+            <!-- =================================================
+     08. VIRTUAL TOUR OF WORKS — THE ANCIENT CODEX
+     Closed leather tome that opens into a page-turning tour
+     ================================================= -->
+            <section class="section ancient-book-section" id="virtualBookSection"
+                aria-label="Virtual Tour of Works — The Codex">
+
+                <div class="section-tag-row">
+                    <span class="sec-num">08</span>
+                    <span class="sec-title">// VIRTUAL TOUR OF WORKS</span>
+                </div>
+
+                <div class="editorial-title-wrap" data-reveal="fade-up">
+                    <h2 class="huge-editorial-title">
+                        Virtual Tour<br>
+                        <span class="italic-serif">of Works.</span>
+                    </h2>
+                    <p class="section-desc-lead">
+                        A bound volume of everything shipped. Click the cover to break the seal, then turn the leaves
+                        page by page through projects, interfaces, and proof of craft.
+                    </p>
+                </div>
+
+                <!-- ============ BOOK STAGE ============ -->
+                <div class="book-stage" id="bookStage" data-reveal="scale-up">
+
+                    <!-- Ambient dust + light pool behind the tome -->
+                    <div class="book-stage-ambient" aria-hidden="true"></div>
+                    <div class="book-stage-dust" aria-hidden="true"></div>
+
+                    <!-- Ground shadow -->
+                    <div class="book-ground-shadow" aria-hidden="true"></div>
+
+                    <div class="book-3d" id="book3d">
+
+                        <div class="book-closed-half" id="bookClosedHalf">
+
+                            <!-- ---- CLOSED FRONT COVER ---- -->
+                            <div class="book-cover" id="bookCover" role="button" tabindex="0"
+                                aria-label="Open the Codex">
+                                <div class="cover-face">
+
+                                    <div class="cover-leather" aria-hidden="true"></div>
+                                    <div class="cover-grain" aria-hidden="true"></div>
+                                    <div class="cover-tooling" aria-hidden="true"></div>
+
+                                    <div class="cover-frame-lines" aria-hidden="true">
+                                        <span class="frame-line outer"></span>
+                                        <span class="frame-line inner"></span>
+                                    </div>
+
+                                    <div class="cover-corners" aria-hidden="true">
+                                        <span class="cc tl"></span>
+                                        <span class="cc tr"></span>
+                                        <span class="cc bl"></span>
+                                        <span class="cc br"></span>
+                                    </div>
+
+                                    <div class="cover-title-block">
+                                        <span class="cover-overline">Anno &bull; MMXXVI</span>
+                                        <div class="cover-ornament" aria-hidden="true">
+                                            <svg viewBox="0 0 120 40" fill="none" stroke="currentColor"
+                                                stroke-width="1.4">
+                                                <path d="M4 20h34M82 20h34" />
+                                                <path d="M60 6c8 6 8 22 0 28-8-6-8-22 0-28z" />
+                                                <circle cx="46" cy="20" r="3.2" />
+                                                <circle cx="74" cy="20" r="3.2" />
+                                                <path d="M52 20h16" />
+                                            </svg>
+                                        </div>
+                                        <h2 class="cover-main-title">VIRTUAL TOUR</h2>
+                                        <p class="cover-sub-title">of Works</p>
+                                        <span class="cover-author">S&nbsp;JEYASEELAN</span>
+                                        <div class="cover-ornament small" aria-hidden="true">
+                                            <svg viewBox="0 0 120 40" fill="none" stroke="currentColor"
+                                                stroke-width="1.4">
+                                                <path d="M4 20h34M82 20h34" />
+                                                <path d="M60 6c8 6 8 22 0 28-8-6-8-22 0-28z" />
+                                                <circle cx="46" cy="20" r="3.2" />
+                                                <circle cx="74" cy="20" r="3.2" />
+                                                <path d="M52 20h16" />
+                                            </svg>
+                                        </div>
+                                        <span class="cover-colophon">Tirunelveli &bull; Tamil Nadu &bull; India</span>
+                                    </div>
+
+                                    <div class="cover-seal" aria-hidden="true">
+                                        <span class="seal-monogram">SJ</span>
+                                        <span class="seal-ring"></span>
+                                    </div>
+
+                                    <div class="cover-open-hint">
+                                        <span class="hint-glyph" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="1.6">
+                                                <path d="M12 5v14" />
+                                                <path d="M7 10l5 5 5-5" />
+                                            </svg>
+                                        </span>
+                                        <span class="hint-text">Click to break the seal &amp; open</span>
+                                    </div>
+
+                                </div>
+
+                                <!-- Reverse side of the front board (marbled endpaper) -->
+                                <div class="cover-inside" aria-hidden="true"></div>
+
+                                <!-- Raised leather spine of the closed volume -->
+                                <div class="cover-spine" aria-hidden="true">
+                                    <span class="cover-spine-title">VIRTUAL TOUR</span>
+                                    <span class="cover-spine-band b1"></span>
+                                    <span class="cover-spine-band b2"></span>
+                                </div>
+                            </div>
+
+                            <!-- Block of closed page edges peeking past the cover -->
+                            <div class="book-edge-block" aria-hidden="true"></div>
+
+                        </div>
+
+                        <!-- ---- OPEN SPREAD ---- -->
+                        <div class="book-spread" id="bookSpread" aria-hidden="true">
+
+                            <!-- Realistic Hardcover Backing Base (Desktop) -->
+                            <div class="book-hardcover-base" aria-hidden="true">
+                                <div class="book-headband top"></div>
+                                <div class="book-headband bottom"></div>
+                            </div>
+
+                            <!-- Page Thickness Edges / Stacked Paper Block (Desktop) -->
+                            <div class="book-edge-stack edge-left" aria-hidden="true"></div>
+                            <div class="book-edge-stack edge-right" aria-hidden="true"></div>
+                            <div class="book-edge-stack edge-bottom" aria-hidden="true"></div>
+
+                            <!-- Static left page (on mobile, this is the single visible page) -->
+                            <article class="book-page page-left" id="pageLeft" aria-live="polite"></article>
+
+                            <!-- Gutter shadow (Desktop center binding) -->
+                            <div class="book-gutter" aria-hidden="true"></div>
+
+                            <!-- Static right page (Desktop only) -->
+                            <article class="book-page page-right" id="pageRight" aria-live="polite"></article>
+
+                            <!-- Turning leaf (injected during a page turn) -->
+                            <div class="book-leaf" id="bookLeaf" aria-hidden="true"></div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ============ BOOK CONTROLS ============ -->
+                <div class="book-controls" id="bookControls">
+
+                    <button type="button" class="book-ctrl-btn magnetic" id="bookPrevBtn" aria-label="Previous page"
+                        disabled>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 5l-7 7 7 7" />
+                        </svg>
+                    </button>
+
+                    <div class="book-folio-readout">
+                        <span class="folio-word">FOLIO</span>
+                        <span class="folio-current" id="bookFolioCurrent">I</span>
+                        <span class="folio-divider">/</span>
+                        <span class="folio-total" id="bookFolioTotal">VI</span>
+                    </div>
+
+                    <button type="button" class="book-ctrl-btn magnetic" id="bookNextBtn" aria-label="Next page">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+
+                    <button type="button" class="book-close-btn magnetic" id="bookCloseBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 6l12 12M18 6L6 18" />
+                        </svg>
+                        <span>CLOSE VOLUME</span>
+                    </button>
+
+                </div>
+
+                <p class="book-keyboard-hint" aria-hidden="true">
+                    Use <kbd>&larr;</kbd> <kbd>&rarr;</kbd> or click the page corners to turn leaves
+                </p>
+
+            </section>
+
+
+            <!-- =================================================
+             11. BOTTOM CONTACT SECTION (Sideways Strip + Hanging ID Badge + CONNECT Button)
+        ================================================= -->
+            <section class="section bottom-contact-section" id="contactSection"
+                aria-label="Bottom Contact & Connect Trigger">
+
+                <!-- Floating Physical Hanging Developer ID Badge (Hangs from top-left) -->
+                <div class="contact-hanging-badge-rig" id="contactBadgeRig" aria-label="Developer Access ID Badge">
+                    <!-- Top Attachment Rivet Mount on Section Ceiling -->
+                    <div class="badge-mount-point" id="badgeMountPoint">
+                        <div class="mount-metal-bracket"></div>
+                        <div class="mount-rivet-head"></div>
+                    </div>
+
+                    <!-- Flexible Elastic Lanyard Strap & Swivel Clasp -->
+                    <div class="badge-lanyard-strap" id="badgeLanyardStrap">
+                        <div class="strap-fabric-line"></div>
+                        <div class="strap-metallic-clasp"></div>
+                        <div class="strap-swivel-hook"></div>
+                    </div>
+
+                    <!-- 3D Realistic Hanging Developer ID Badge -->
+                    <div class="dev-id-badge-card" id="devIdBadgeCard" tabindex="0" role="region"
+                        aria-label="Developer ID Badge: Jeyaseelan">
+                        <!-- Subtle Dynamic Specular Lighting Reflection Layer -->
+                        <div class="badge-lighting-specular" id="badgeSpecular"></div>
+
+                        <!-- Top Slot Punch Hole for Lanyard Clip -->
+                        <div class="badge-clip-slot-punch"></div>
+
+                        <!-- Badge Header: Gold Security Chip & Access Level -->
+                        <div class="badge-top-row">
+                            <div class="badge-gold-chip">
+                                <span class="chip-circuit c1"></span>
+                                <span class="chip-circuit c2"></span>
+                                <span class="chip-circuit c3"></span>
+                            </div>
+                            <div class="badge-access-tag">
+                                <span class="access-dot-pulse"></span>
+                                <span class="access-lbl">DEV // AUTH</span>
+                            </div>
+                        </div>
+
+                        <!-- Badge Photo Frame Window (Using image2.png) -->
+                        <div class="badge-photo-frame">
+                            <img src="assets/image2.png" alt="Jeyaseelan Profile Photo" class="badge-photo-img"
+                                id="badgePhotoImg">
+                            <div class="badge-photo-scanlines"></div>
+                            <div class="badge-live-badge">ONLINE</div>
+                        </div>
+
+                        <!-- Badge Identity Typography & Metadata -->
+                        <div class="badge-body-meta">
+                            <h3 class="badge-dev-fullname">Jeyaseelan</h3>
+                            <div class="badge-dev-role-strip">
+                                <span class="role-primary">Developer</span>
+                                <span class="role-sep">&bull;</span>
+                                <span class="role-sub">Software Developer</span>
+                            </div>
+
+                            <div class="badge-tech-tags-grid">
+                                <span class="b-tech-pill">Java</span>
+                                <span class="b-tech-pill">DSA</span>
+                                <span class="b-tech-pill">Web</span>
+                                <span class="b-tech-pill">AI</span>
+                            </div>
+
+                            <div class="badge-bottom-security-row">
+                                <div class="badge-barcode-art" aria-hidden="true">
+                                    <span class="bar b-thick"></span>
+                                    <span class="bar b-thin"></span>
+                                    <span class="bar b-med"></span>
+                                    <span class="bar b-thick"></span>
+                                    <span class="bar b-thin"></span>
+                                    <span class="bar b-med"></span>
+                                    <span class="bar b-thick"></span>
+                                    <span class="bar b-thin"></span>
+                                </div>
+                                <div class="badge-id-code">
+                                    <span class="id-lbl">ID //</span>
+                                    <span class="id-val">SJ-2026-823</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bottom-contact-wrapper" data-reveal="fade-up">
+
+                    <div class="section-tag-row" style="justify-content: center;">
+                        <span class="sec-num">09</span>
+                        <span class="sec-title">// CORRESPONDENCE PORTAL</span>
+                    </div>
+
+                    <h2 class="bottom-contact-title">
+                        Ready to create something<br>
+                        <span class="italic-serif">Unforgettable?</span>
+                    </h2>
+
+                    <p class="bottom-contact-lead">
+                        Touch the Connect button below to initialize the high-speed connection sequence.
+                    </p>
+
+                    <!-- PROMINENT GLOWING CONNECT BUTTON -->
+                    <div class="connect-action-center">
+                        <button type="button" class="connect-launch-button magnetic open-connect-btn"
+                            id="connectTriggerBtn">
+                            <div class="btn-glow-ring"></div>
+                            <div class="btn-inner-core">
+                                <span class="btn-conn-txt">CONNECT</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </div>
+                        </button>
+                        <span class="btn-hint-sub">TOUCH TO INITIALIZE 0-100% CONNECTION CONSOLE</span>
+                    </div>
+
+                </div>
+
+                <!-- SIDEWAYS CONTINUOUS SCROLLING CONTACT INFO STRIP (Mail, Phone, Socials) -->
+                <div class="bottom-sideways-contact-strip" id="bottomContactStrip">
+                    <div class="bottom-marquee-track" id="bottomMarqueeTrack">
+
+                        <a href="mailto:jeyaseelan26206@gmail.com" class="strip-pill magnetic">
+                            <span class="s-dot"></span>
+                            <span class="s-icon">&#9993;</span>
+                            <span>jeyaseelan26206@gmail.com</span>
+                        </a>
+
+                        <a href="tel:+919042201784" class="strip-pill magnetic">
+                            <span class="s-dot green"></span>
+                            <span class="s-icon">&#9742;</span>
+                            <span>+91 9042201784</span>
+                        </a>
+
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                            class="strip-pill magnetic social-redirect-link" data-platform="instagram">
+                            <span class="s-dot ig-dot"></span>
+                            <span class="s-icon">&#9672;</span>
+                            <span>INSTAGRAM // @jeyaseelan</span>
+                        </a>
+
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                            class="strip-pill magnetic social-redirect-link" data-platform="linkedin">
+                            <span class="s-dot in-dot"></span>
+                            <span class="s-icon">&#9672;</span>
+                            <span>LINKEDIN // S Jeyaseelan</span>
+                        </a>
+
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                            class="strip-pill magnetic social-redirect-link" data-platform="github">
+                            <span class="s-dot gh-dot"></span>
+                            <span class="s-icon">&#9672;</span>
+                            <span>GITHUB // jeyaseelan-dev</span>
+                        </a>
+
+                        <div class="strip-pill magnetic">
+                            <span class="s-dot"></span>
+                            <span class="s-icon">&#128205;</span>
+                            <span>TIRUNELVELI, TAMIL NADU, INDIA</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         MODAL 1: 0% -> 100% "CONNECTING..." LOADER SCREEN
+    ===================================================== -->
+    <div class="connecting-loader-overlay" id="connectingLoaderOverlay" role="dialog" aria-modal="true"
+        aria-hidden="true">
+        <div class="conn-loader-box">
+            <div class="conn-radar-pulse"></div>
+            <span class="conn-status-tag">INITIALIZING SECURE CORRESPONDENCE</span>
+            <div class="conn-number-wrap">
+                <span class="conn-percent-val" id="connPercentVal">0%</span>
+            </div>
+            <div class="conn-bar-track">
+                <div class="conn-bar-fill" id="connBarFill"></div>
+            </div>
+            <span class="conn-subtext">CONNECTING TO S JEYASEELAN'S INSTA-PHONE CONSOLE...</span>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+         MODAL 2: PHONE SCREEN - DIRECT MESSAGE COMPOSER
+         (Clean form to send message directly to jeyaseelan26206@gmail.com)
+    ===================================================== -->
+    <div class="connect-phone-modal" id="connectPhoneModal" role="dialog" aria-modal="true" aria-hidden="true">
+
+        <div class="phone-device-chassis">
+
+            <!-- Phone Bezel Header -->
+            <div class="phone-island-bar">
+                <div class="phone-time-left">9:41</div>
+                <div class="phone-dynamic-island">
+                    <span class="island-camera"></span>
+                    <span class="island-indicator"></span>
+                </div>
+                <div class="phone-signals-right">
+                    <span class="sig-bar"></span>
+                    <span class="sig-wifi">5G</span>
+                    <span class="sig-bat">100%</span>
+                </div>
+            </div>
+
+            <!-- Phone Top Nav Bar -->
+            <div class="phone-app-header">
+                <div class="p-nav-left">
+                    <span class="p-app-brand">CONNECT</span>
+                </div>
+                <div class="p-nav-center">
+                    <span class="p-verified-name">S JEYASEELAN &bull; ONLINE</span>
+                </div>
+                <div class="p-nav-right">
+                    <button class="phone-close-btn" id="phoneCloseBtn" aria-label="Close Connect Phone">&times;</button>
+                </div>
+            </div>
+
+            <!-- Phone Direct Message Composer (Full Screen Form) -->
+            <div class="phone-compose-fullscreen">
+
+                <!-- Profile Header Inside Phone -->
+                <div class="phone-profile-card">
+                    <div class="phone-avatar-badge">
+                        <span class="p-initials">SJ</span>
+                    </div>
+                    <div class="phone-profile-meta">
+                        <h3 class="p-full-name">S JEYASEELAN</h3>
+                        <span class="p-handle">@jeyaseelan &bull; Tirunelveli</span>
+                        <p class="p-bio-tagline">Computer Science Engineer &bull; Creative Developer &bull; AI
+                            Enthusiast</p>
+                    </div>
+                </div>
+
+                <!-- Prominent Social Quick Badges with Brand Logos (Direct Redirect on Touch) -->
+                <div class="phone-social-badges-row">
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                        class="p-social-badge ig-badge ig-link-btn" title="Open Instagram">
+                        <div class="p-social-badge-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
+                        </div>
+                        <span class="p-badge-txt">INSTAGRAM</span>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                        class="p-social-badge in-badge in-link-btn" title="Connect on LinkedIn">
+                        <div class="p-social-badge-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect x="2" y="9" width="4" height="12" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </div>
+                        <span class="p-badge-txt">LINKEDIN</span>
+                    </a>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                        class="p-social-badge gh-badge git-link-btn" title="Open GitHub">
+                        <div class="p-social-badge-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                            </svg>
+                        </div>
+                        <span class="p-badge-txt">GITHUB</span>
+                    </a>
+                </div>
+
+                <div class="phone-action-shortcuts">
+                    <a href="mailto:jeyaseelan26206@gmail.com" class="p-action-chip">
+                        <span>✉ EMAIL</span>
+                    </a>
+                    <a href="tel:+919042201784" class="p-action-chip">
+                        <span>☎ CALL</span>
+                    </a>
+                    <button class="p-action-chip copy-email-phone-btn" type="button">
+                        <span>📋 COPY EMAIL</span>
+                    </button>
+                </div>
+
+                <!-- Phone Direct Message Composer (From / To / Subject / Message -> jeyaseelan26206@gmail.com) -->
+                <div class="phone-mail-composer-card">
+
+                    <div class="phone-composer-header">
+                        <div class="composer-title-tag">
+                            <span class="mail-icon">✉</span>
+                            <span>NEW DIRECT MESSAGE</span>
+                        </div>
+                        <span class="composer-status-live">● READY</span>
+                    </div>
+
+                    <form class="phone-composer-form" id="phoneMsgForm" onsubmit="return false;">
+
+                        <!-- TO Field (Verified Recipient) -->
+                        <div class="composer-field-group to-field-group">
+                            <label class="composer-label">TO:</label>
+                            <div class="composer-to-pill">
+                                <span class="to-avatar">SJ</span>
+                                <div class="to-meta">
+                                    <span class="to-name">S Jeyaseelan</span>
+                                    <span class="to-email">jeyaseelan26206@gmail.com</span>
+                                </div>
+                                <span class="verified-check">✓</span>
+                            </div>
+                        </div>
+
+                        <!-- FROM Fields (Name & Email) -->
+                        <div class="composer-field-group">
+                            <label for="phoneSenderName" class="composer-label">FROM NAME:</label>
+                            <input type="text" id="phoneSenderName" class="phone-composer-input"
+                                placeholder="Your Full Name" required autocomplete="name">
+                        </div>
+
+                        <div class="composer-field-group">
+                            <label for="phoneSenderEmail" class="composer-label">FROM EMAIL:</label>
+                            <input type="email" id="phoneSenderEmail" class="phone-composer-input"
+                                placeholder="your.email@example.com" required autocomplete="email">
+                        </div>
+
+                        <!-- SUBJECT Field -->
+                        <div class="composer-field-group">
+                            <label for="phoneSenderSubject" class="composer-label">SUBJECT:</label>
+                            <input type="text" id="phoneSenderSubject" class="phone-composer-input"
+                                placeholder="Project Inquiry / Opportunity" required>
+                        </div>
+
+                        <!-- MESSAGE Field -->
+                        <div class="composer-field-group msg-body-group">
+                            <label for="phoneSenderMessage" class="composer-label">MESSAGE:</label>
+                            <textarea id="phoneSenderMessage" class="phone-composer-textarea" rows="4"
+                                placeholder="Write your message to Jeyaseelan here..." required></textarea>
+                        </div>
+
+                        <!-- SUBMIT BUTTON -->
+                        <button type="submit" class="phone-composer-submit-btn" id="phoneSendBtn">
+                            <span class="btn-text">SEND MESSAGE</span>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+
+                    </form>
+
+                    <!-- Feedback Success Alert (Hidden until sent) -->
+                    <div class="composer-success-banner" id="composerSuccessBanner">
+                        <span class="success-icon">✓</span>
+                        <div class="success-text">
+                            <strong>Message Prepared &amp; Dispatched!</strong>
+                            <span>Opening email client for jeyaseelan26206@gmail.com</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Phone Bottom Home Indicator -->
+       
+
+    </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MODAL 3: VIEW RESUME 3D PAPER EFFECT MODAL
+    ===================================================== -->
+    <div class="resume-paper-modal" id="resumePaperModal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="resume-paper-wrapper">
+
+            <div class="paper-header-actions">
+                <div class="paper-badge-tag">
+                    <span class="p-seal">VERIFIED DOCUMENT</span>
+                    <span>CURRICULUM VITAE &bull; S JEYASEELAN</span>
+                </div>
+                <div class="paper-btn-group">
+                    <a href="resume.pdf" download="S_Jeyaseelan_Resume.pdf" class="btn-solid-primary btn-sm magnetic">
+                        <span>DOWNLOAD PDF</span>
+                    </a>
+                    <button class="resume-paper-close-btn" id="resumePaperCloseBtn"
+                        aria-label="Close Resume">&times;</button>
+                </div>
+            </div>
+
+            <!-- Realistic Unfolded Paper Sheet -->
+            <div class="unfolded-paper-sheet" id="unfoldedPaperSheet">
+                <div class="paper-crease top-crease"></div>
+                <div class="paper-crease mid-crease"></div>
+
+                <div class="paper-sheet-inner">
+                    <div class="sheet-title-row">
+                        <div>
+                            <h2 class="sheet-full-name">S JEYASEELAN</h2>
+                            <p class="sheet-sub">Computer Science Engineering Student &bull; Creative Developer</p>
+                        </div>
+                        <div class="sheet-stamp">
+                            <span>2026</span>
+                            <span>OFFICIAL</span>
+                        </div>
+                    </div>
+
+                    <div class="sheet-contact-line">
+                        <span>✉ jeyaseelan26206@gmail.com</span>
+                        <span>☎ +91 9042201784</span>
+                        <span>📍 Tirunelveli, Tamil Nadu</span>
+                        <span>🎓 CGPA: 8.16</span>
+                    </div>
+
+                    <hr class="sheet-hr">
+
+                    <div class="sheet-section">
+                        <h4 class="sheet-sec-heading">EDUCATION</h4>
+                        <div class="sheet-item">
+                            <div class="sheet-item-row">
+                                <strong>B.E. Computer Science &amp; Engineering</strong>
+                                <span>2023 &ndash; 2027 &bull; CGPA: 8.16</span>
+                            </div>
+                            <p class="sheet-desc">Anna University Affiliated College &bull; Core CSE, Data Structures,
+                                Algorithms &amp; Full Stack</p>
+                        </div>
+                        <div class="sheet-item">
+                            <div class="sheet-item-row">
+                                <strong>Higher Secondary Certificate (12th)</strong>
+                                <span>86% &bull; Computer Science Stream</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sheet-section">
+                        <h4 class="sheet-sec-heading">KEY PROJECTS</h4>
+                        <div class="sheet-item">
+                            <div class="sheet-item-row">
+                                <strong>EcoBridge — Sustainable Knowledge Hub</strong>
+                                <span>Lead Full Stack Developer</span>
+                            </div>
+                            <p class="sheet-desc">SDG environmental platform integrating climate metrics, IoT monitoring
+                                visualizations, and community action.</p>
+                        </div>
+                        <div class="sheet-item">
+                            <div class="sheet-item-row">
+                                <strong>CRUX — AI Document Intelligence</strong>
+                                <span>AI / NLP Engineer</span>
+                            </div>
+                            <p class="sheet-desc">Intelligent document summarization engine parsing dense academic texts
+                                into structured notes and smart queries.</p>
+                        </div>
+                    </div>
+
+                    <div class="sheet-section">
+                        <h4 class="sheet-sec-heading">TECHNICAL PROFICIENCIES</h4>
+                        <p class="sheet-desc"><strong>Languages:</strong> Python, Java, C, JavaScript (ES6+), HTML5,
+                            CSS3, PHP, SQL</p>
+                        <p class="sheet-desc"><strong>Web &amp; Frameworks:</strong> React.js, Node.js, Express,
+                            MongoDB, Canvas API, REST APIs</p>
+                        <p class="sheet-desc"><strong>AI &amp; 3D:</strong> NLP Document Comprehension, Python ML,
+                            Blender 3D, Spatial Web</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+         MODAL 4: CERTIFICATE FULLSCREEN LIGHTBOX VIEWER
+    ===================================================== -->
+    <div class="cert-lightbox-modal" id="certLightboxModal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="cert-lightbox-box">
+            <div class="cert-lightbox-header">
+                <div class="cert-lightbox-titles">
+                    <h3 class="cert-lightbox-title" id="certLightboxTitle">Full Stack Web Architecture</h3>
+                    <span class="cert-lightbox-sub" id="certLightboxSub">Accredited Institute &bull; 2025</span>
+                </div>
+                <div class="cert-lightbox-actions">
+                    <a href="assets/certificates/certificate1.jpg" target="_blank" rel="noopener noreferrer"
+                        class="btn-solid-primary btn-sm magnetic" id="certLightboxOpenTab">
+                        <span>OPEN FULL IMAGE &UpperRightArrow;</span>
+                    </a>
+                    <button class="cert-lightbox-close" id="certLightboxCloseBtn"
+                        aria-label="Close Lightbox">&times;</button>
+                </div>
+            </div>
+            <div class="cert-lightbox-body">
+                <img src="assets/certificates/certificate1.jpg" alt="Certificate Full Preview"
+                    class="cert-lightbox-full-img" id="certLightboxFullImg">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+         SITE FOOTER
+    ===================================================== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand-col">
+                <span class="f-name">S JEYASEELAN</span>
+                <span class="f-tamil">எஸ் ஜெயசீலன்</span>
+                <p class="f-copy">&copy; 2026 S Jeyaseelan &bull; Computer Science Engineer &bull; Tirunelveli, Tamil
+                    Nadu, India</p>
+            </div>
+            <div class="footer-links-col">
+                <button type="button" class="footer-contact-link magnetic open-connect-btn">
+                    <span>CONNECT WITH ME</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </button>
+                <a href="#home" class="footer-top-link magnetic">
+                    <span>BACK TO TOP &uarr;</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript Engine -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

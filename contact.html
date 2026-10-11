@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact S JEYASEELAN — Computer Science Engineering Student & Creative Developer based in Tirunelveli, Tamil Nadu, India. Initiate correspondence via 3D interactive letter or social links.">
+    <meta name="author" content="S Jeyaseelan">
+    <meta property="og:title" content="Contact S JEYASEELAN — Creative Developer">
+    <meta property="og:description" content="Step into the Contact World of S Jeyaseelan. Compose a direct message or connect on social platforms.">
+
+    <title>CONTACT &bull; S JEYASEELAN — Creative Developer &amp; CSE</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="page-contact">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+    <!-- Theme Ripple -->
+    <div class="theme-ripple" id="themeRipple" aria-hidden="true"></div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- Background 3D Canvas -->
+    <div class="canvas-3d-bg" aria-hidden="true">
+        <canvas id="bgCanvas"></canvas>
+        <div class="bg-fine-grid"></div>
+        <div class="bg-noise-overlay"></div>
+        <div class="bg-mouse-radial" id="mouseRadial"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="site-header" id="siteHeader">
+        <div class="nav-wrapper">
+            
+            <a href="index.html" class="nav-brand-logo magnetic" aria-label="Return to Portfolio">
+                <span class="brand-monogram">&larr; SJ</span>
+                <span class="brand-period">.</span>
+                <span class="brand-geo">RETURN HOME</span>
+            </a>
+
+            <nav class="nav-floating-pill" aria-label="Contact Navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html#home" class="nav-link magnetic"><span>01</span> HOME</a></li>
+                    <li><a href="index.html#about" class="nav-link magnetic"><span>02</span> ABOUT</a></li>
+                    <li><a href="index.html#achievements" class="nav-link magnetic"><span>03</span> ACHIEVEMENTS</a></li>
+                    <li><a href="index.html#resume" class="nav-link magnetic"><span>04</span> VIRTUAL RESUME</a></li>
+                    <li><a href="contact.html" class="nav-link magnetic active"><span>05</span> CONTACT</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-controls">
+                <button class="theme-toggle-btn magnetic" id="themeToggleBtn" aria-label="Toggle light and dark mode">
+                    <div class="theme-sun-moon-box">
+                        <div class="sun-glyph"></div>
+                        <div class="moon-glyph"></div>
+                    </div>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- Main Contact Experience -->
+    <main class="contact-page-main">
+
+        <!-- =================================================
+             1. CONTACT PAGE HERO: ANIMATED STYLIZED PORTRAIT AVATAR
+        ================================================= -->
+        <section class="section contact-hero-section">
+            
+            <div class="section-tag-row">
+                <span class="sec-num">01</span>
+                <span class="sec-title">// THE CONTACT REALM &bull; S JEYASEELAN</span>
+            </div>
+
+            <div class="contact-hero-grid">
+
+                <!-- Left Column: Stylized Cinematic Face/Avatar Treatment -->
+                <div class="contact-avatar-col" data-reveal="fade-left">
+                    
+                    <div class="avatar-cinematic-stage magnetic" id="contactAvatarStage">
+                        <div class="avatar-glow-ambient"></div>
+                        
+                        <div class="avatar-frame-3d">
+                            <!-- Real Portrait with Cinematic Line-Art / Silhouette Mask Treatment -->
+                            <img src="assets/image1.jpg" alt="S Jeyaseelan Cinematic Portrait" class="avatar-real-img" id="avatarImg">
+                            
+                            <div class="avatar-lineart-overlay"></div>
+                            <div class="avatar-scan-glow"></div>
+                            <div class="avatar-hologram-grid"></div>
+                            
+                            <div class="avatar-badge-tag">
+                                <span class="badge-dot"></span>
+                                <span>S JEYASEELAN &bull; ONLINE</span>
+                            </div>
+                        </div>
+
+                        <div class="avatar-caption-txt">
+                            <span>TIRUNELVELI, TAMIL NADU &bull; CSE &bull; CREATIVE DEV</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Column: Editorial Contact Headline -->
+                <div class="contact-hero-text-col" data-reveal="fade-right">
+                    <span class="contact-eyebrow">INITIATE CORRESPONDENCE</span>
+                    
+                    <h1 class="contact-giant-heading">
+                        Let's Make<br>
+                        Something<br>
+                        <span class="italic-serif">Iconic.</span>
+                    </h1>
+
+                    <p class="contact-lead-statement">
+                        Have an ambitious project, an internship/full-time opportunity, or want to discuss creative 3D web engineering? My inbox is always open.
+                    </p>
+
+                    <div class="direct-quick-strip">
+                        <a href="mailto:jeyaseelan26206@gmail.com" class="direct-link-pill magnetic">
+                            <span class="pill-dot"></span>
+                            <span>jeyaseelan26206@gmail.com</span>
+                        </a>
+                        <a href="tel:+919042201784" class="direct-link-pill magnetic">
+                            <span class="pill-dot"></span>
+                            <span>+91 9042201784</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             2. SLOW SIDEWAYS SOCIAL MEDIA MOVING WALL
+        ================================================= -->
+        <section class="section social-wall-section" aria-label="Social Media Experience">
+            
+            <div class="social-wall-header" data-reveal="fade-up">
+                <span class="sec-num">02</span>
+                <span class="sec-title">// THE NETWORK &bull; SOCIAL MEDIA STREAM</span>
+            </div>
+
+            <!-- Slow Sideways Continuous Moving Marquee Strip (Pauses on Hover) -->
+            <div class="social-marquee-container" id="socialMarquee">
+                <div class="social-track" id="socialTrack">
+
+                    <!-- Instagram Card -->
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-card magnetic" data-social="instagram">
+                        <div class="social-card-inner">
+                            <div class="social-icon insta">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                            </div>
+                            <div class="social-info">
+                                <span class="social-platform">INSTAGRAM</span>
+                                <span class="social-handle">@jeyaseelan</span>
+                            </div>
+                            <span class="social-arrow">&UpperRightArrow;</span>
+                        </div>
+                    </a>
+
+                    <!-- LinkedIn Card -->
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-card magnetic" data-social="linkedin">
+                        <div class="social-card-inner">
+                            <div class="social-icon linkedin">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                            </div>
+                            <div class="social-info">
+                                <span class="social-platform">LINKEDIN</span>
+                                <span class="social-handle">S Jeyaseelan</span>
+                            </div>
+                            <span class="social-arrow">&UpperRightArrow;</span>
+                        </div>
+                    </a>
+
+                    <!-- GitHub Card -->
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-card magnetic" data-social="github">
+                        <div class="social-card-inner">
+                            <div class="social-icon github">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                            </div>
+                            <div class="social-info">
+                                <span class="social-platform">GITHUB</span>
+                                <span class="social-handle">jeyaseelan-dev</span>
+                            </div>
+                            <span class="social-arrow">&UpperRightArrow;</span>
+                        </div>
+                    </a>
+
+                    <!-- Duplicate for seamless infinite loop -->
+                    <!-- Instagram Card Duplicate -->
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-card magnetic" data-social="instagram">
+                        <div class="social-card-inner">
+                            <div class="social-icon insta">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                            </div>
+                            <div class="social-info">
+                                <span class="social-platform">INSTAGRAM</span>
+                                <span class="social-handle">@jeyaseelan</span>
+                            </div>
+                            <span class="social-arrow">&UpperRightArrow;</span>
+                        </div>
+                    </a>
+
+                    <!-- LinkedIn Card Duplicate -->
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-card magnetic" data-social="linkedin">
+                        <div class="social-card-inner">
+                            <div class="social-icon linkedin">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                            </div>
+                            <div class="social-info">
+                                <span class="social-platform">LINKEDIN</span>
+                                <span class="social-handle">S Jeyaseelan</span>
+                            </div>
+                            <span class="social-arrow">&UpperRightArrow;</span>
+                        </div>
+                    </a>
+
+                    <!-- GitHub Card Duplicate -->
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-card magnetic" data-social="github">
+                        <div class="social-card-inner">
+                            <div class="social-icon github">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                            </div>
+                            <div class="social-info">
+                                <span class="social-platform">GITHUB</span>
+                                <span class="social-handle">jeyaseelan-dev</span>
+                            </div>
+                            <span class="social-arrow">&UpperRightArrow;</span>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="social-wall-hint">
+                <span>&bull; HOVER OVER THE STRIP TO PAUSE MOTION &bull; CLICK ANY PROFILE TO CONNECT &bull;</span>
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             3. 3D INTERACTIVE POST LETTER & GMAIL COMPOSE ENVELOPE
+        ================================================= -->
+        <section class="section contact-envelope-section" aria-label="Interactive Postal Letter">
+            
+            <div class="section-tag-row">
+                <span class="sec-num">03</span>
+                <span class="sec-title">// THE DISPATCH &bull; 3D PARCHMENT LETTER</span>
+            </div>
+
+            <div class="editorial-title-wrap" data-reveal="fade-up">
+                <h2 class="huge-editorial-title">
+                    Write to<br>
+                    <span class="italic-serif">Jeyaseelan.</span>
+                </h2>
+                <p class="section-desc-lead">
+                    Hover or click the envelope to reveal the parchment letter. Compose your message to automatically open Gmail pre-addressed.
+                </p>
+            </div>
+
+            <!-- 3D Envelope Container -->
+            <div class="envelope-experience-wrap" data-reveal="fade-up">
+
+                <div class="envelope-hint-label">
+                    <span class="pulse-ring"></span>
+                    <span>3D POSTAL ENVELOPE &bull; HOVER OR CLICK TO UNSEAL</span>
+                </div>
+
+                <div class="envelope-stage" id="envelopeStage">
+                    
+                    <div class="envelope-3d" id="envelope3d">
+                        <div class="envelope-back"></div>
+
+                        <!-- Parchment Paper Letter (Rises on hover/focus) -->
+                        <div class="letter-paper" id="letterPaper">
+                            
+                            <div class="letter-header">
+                                <div class="letter-stamp-art">
+                                    <span class="stamp-post-mark">INDIA POST</span>
+                                    <span class="stamp-year">2026</span>
+                                    <span class="stamp-loc">TIRUNELVELI</span>
+                                </div>
+                                <div class="letter-meta-head">
+                                    <div class="letter-recipient-line"><strong>TO:</strong> S JEYASEELAN</div>
+                                    <div class="letter-recipient-line"><strong>EMAIL:</strong> jeyaseelan26206@gmail.com</div>
+                                    <div class="letter-recipient-line"><strong>MOBILE:</strong> +91 9042201784</div>
+                                    <div class="letter-recipient-line"><strong>NATIVE:</strong> TIRUNELVELI, TAMIL NADU</div>
+                                </div>
+                            </div>
+
+                            <hr class="letter-divider">
+
+                            <!-- Interactive Message Composer -->
+                            <form class="letter-form" id="contactLetterForm" onsubmit="return false;">
+                                
+                                <div class="letter-form-row">
+                                    <div class="letter-field">
+                                        <label for="senderName" class="letter-label">YOUR NAME</label>
+                                        <input type="text" id="senderName" class="letter-input" placeholder="e.g. Priya Sharma" required>
+                                    </div>
+                                    <div class="letter-field">
+                                        <label for="senderSubject" class="letter-label">SUBJECT</label>
+                                        <input type="text" id="senderSubject" class="letter-input" placeholder="e.g. Project Opportunity / Collaboration" required>
+                                    </div>
+                                </div>
+
+                                <div class="letter-field">
+                                    <label for="senderMessage" class="letter-label">YOUR MESSAGE</label>
+                                    <textarea id="senderMessage" class="letter-textarea" rows="3" placeholder="Write your thoughts or inquiry here..." required></textarea>
+                                </div>
+
+                                <div class="letter-submit-row">
+                                    <button type="submit" class="btn-solid-primary magnetic letter-send-btn" id="sendLetterBtn">
+                                        <span>SEND VIA GMAIL</span>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                    </button>
+
+                                    <a href="mailto:jeyaseelan26206@gmail.com" class="btn-ghost-link letter-fallback-btn magnetic">
+                                        <span>DEFAULT MAILTO</span>
+                                    </a>
+                                </div>
+
+                                <p class="letter-note">
+                                    * Clicking 'Send via Gmail' opens your Gmail compose window pre-addressed to <strong>jeyaseelan26206@gmail.com</strong>. You can review and confirm before sending.
+                                </p>
+
+                            </form>
+
+                        </div>
+
+                        <!-- Left, Right, Bottom Envelope Folds -->
+                        <div class="envelope-left"></div>
+                        <div class="envelope-right"></div>
+                        <div class="envelope-bottom"></div>
+
+                        <!-- Top Flap with Wax Seal -->
+                        <div class="envelope-top-flap" id="envelopeFlap">
+                            <div class="wax-seal">
+                                <span class="seal-initials">SJ</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Direct Contact Information Cards -->
+            <div class="direct-contact-grid" data-reveal="fade-up">
+
+                <div class="contact-card magnetic" id="emailCard">
+                    <div class="card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-label">DIRECT EMAIL</span>
+                        <a href="mailto:jeyaseelan26206@gmail.com" class="card-value">jeyaseelan26206@gmail.com</a>
+                    </div>
+                    <button class="copy-pill-btn" aria-label="Copy Email">COPY</button>
+                </div>
+
+                <div class="contact-card magnetic" id="phoneCard">
+                    <div class="card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-label">MOBILE PHONE</span>
+                        <a href="tel:+919042201784" class="card-value">+91 9042201784</a>
+                    </div>
+                    <button class="copy-pill-btn" aria-label="Copy Phone Number">COPY</button>
+                </div>
+
+                <div class="contact-card magnetic">
+                    <div class="card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-label">NATIVE RESIDENCE</span>
+                        <span class="card-value">Tirunelveli, Tamil Nadu, India</span>
+                    </div>
+                    <span class="geo-tag">8.71° N, 77.75° E</span>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand-col">
+                <span class="f-name">S JEYASEELAN</span>
+                <span class="f-tamil">எஸ் ஜெயசீலன்</span>
+                <p class="f-copy">&copy; 2026 S Jeyaseelan &bull; Computer Science Engineer &bull; Tirunelveli, Tamil Nadu</p>
+            </div>
+            <div class="footer-links-col">
+                <a href="index.html" class="footer-contact-link magnetic">
+                    <span>&larr; BACK TO PORTFOLIO</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript Engine -->
+    <script src="script.js"></script>
+
+</body>
+</html>
